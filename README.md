@@ -1,77 +1,79 @@
-# TubeSummary - AI-Powered YouTube Video Summarizer
+# TubeSummary: AI-Powered YouTube Video Summarizer
 
-A modern React application that generates concise summaries of YouTube videos using AI, specifically tailored for security and technology briefings.
+TubeSummary is a simple project designed to quickly generate concise summaries of YouTube videos, perfect for including in internal tech newsletters or briefings. It leverages AI models via OpenRouter.ai to fetch video transcripts and produce summaries based on a user-selected model.
 
 ## Features
 
-- Extract transcripts from YouTube videos
-- Generate AI-powered summaries optimized for business briefings
-- Clean, accessible UI using ShadCN UI components
-- Support for multiple AI providers (OpenAI, Claude, Groq)
-- Copy-to-clipboard functionality
-- Responsive design with dark mode support
+*   **YouTube Video Summarization:** Paste a YouTube video URL to get its summary.
+*   **AI Model Selection:** Choose from a curated list of AI models available through OpenRouter.ai.
+*   **Customizable Prompts:** The summarization prompt can be easily adjusted to tailor the output format (currently configured for concise, icon-driven bullet points).
+*   **Markdown Output:** Summaries are provided in Markdown for easy copying and pasting into newsletters or other documents.
+*   **Next.js & Tailwind CSS:** Built with a modern tech stack for a clean user interface.
 
-## Tech Stack
+## Purpose
 
-- Next.js 14 with App Router
-- TypeScript
-- Tailwind CSS
-- ShadCN UI
-- YouTube Transcript API
+This project was created to streamline the process of extracting key information from YouTube videos for an internal tech newsletter, saving time and effort in content creation.
 
 ## Getting Started
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/tubesummary.git
-   cd tubesummary
-   ```
+### Prerequisites
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+*   Node.js (v18.x or later recommended)
+*   npm or yarn
 
-3. Create a `.env` file based on `.env.example`:
-   ```bash
-   cp .env.example .env
-   ```
+### Environment Variables
 
-4. Add your AI provider API keys to the `.env` file.
+Create a `.env.local` file in the root of the project and add the following variables. **An OpenRouter API key is required for the application to function.**
 
-5. Run the development server:
-   ```bash
-   npm run dev
-   ```
+```
+# Required: Your API key from OpenRouter.ai
+# Sign up at https://openrouter.ai to get your key.
+OPENROUTER_API_KEY=your_openrouter_api_key_here
 
-6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+# Recommended: Your application's public URL (used for HTTP Referer header with OpenRouter)
+# This helps OpenRouter with tracking and can be used for benefits like rate limit increases.
+# For local development, http://localhost:3000 is fine.
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
-## Environment Variables
+# Optional: Set a default AI model. 
+# This must match an ID from the AVAILABLE_MODELS list in src/lib/ai-config.ts
+# Example: AI_MODEL=openai/gpt-4o-mini 
+```
 
-- `OPENAI_API_KEY`: Your OpenAI API key
-- `ANTHROPIC_API_KEY`: Your Anthropic API key
-- `GROQ_API_KEY`: Your Groq API key
-- `AI_PROVIDER`: Selected AI provider (openai, anthropic, or groq)
-- `AI_MODEL`: Selected AI model (e.g., gpt-4-turbo, claude-3-opus)
+Replace `your_openrouter_api_key_here` with your actual OpenRouter API key.
 
-## API Routes
+### Installation & Running Locally
 
-- `POST /api/summarize`: Accepts a YouTube URL, extracts the transcript, and returns an AI-generated summary
+1.  Clone the repository (if you haven\'t already):
+    ```bash
+    git clone <your-repo-url>
+    cd <repo-name>
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    # or
+    # yarn install
+    ```
+3.  Run the development server:
+    ```bash
+    npm run dev
+    # or
+    # yarn dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+This is a personal project, but suggestions are welcome! Feel free to open an issue or submit a pull request if you have ideas for improvements.
 
 ## License
 
-MIT License - feel free to use this project for any purpose.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
 - [Next.js](https://nextjs.org/)
 - [ShadCN UI](https://ui.shadcn.com/)
 - [YouTube Transcript API](https://github.com/jdepoix/youtube-transcript-api)
+- [OpenRouter.ai](https://openrouter.ai/) for AI model access.
